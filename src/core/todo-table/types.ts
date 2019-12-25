@@ -1,7 +1,11 @@
-import { SimpleTableProps, TableRowItem } from '../../components'
+import { TableRowItem, TableColumItem } from '../../components'
 
 export interface TodoTableStateProps {
-    rows: TableRowItem[];
+    rows?: TableRowItem[];
 };
 
-export type TodoTableProps = TodoTableStateProps & SimpleTableProps;
+export interface TodoTableOwnProps {
+    columns?: TableColumItem[];
+}
+
+export type TodoTableProps = TodoTableStateProps & TodoTableOwnProps;

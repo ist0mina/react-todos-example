@@ -11,7 +11,7 @@ export const TodoList: React.FC<TodoListProps> = () => {
                 </div>
             </div>
             <div className="row">
-                <TodoTableContainer rows={[]} columns={[]}/>
+                <TodoTableContainer />
             </div>
         </div>
     )

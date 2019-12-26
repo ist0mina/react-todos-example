@@ -28,5 +28,7 @@ export enum TodoActionTypes {
     LOAD_TODOS_PRELOAD = '@@todos/LOAD_TODOS_PRELOAD', 
     LOAD_TODOS_REQUEST = '@@todos/LOAD_TODOS_REQUEST',
     LOAD_TODOS_SUCCESS = '@@todos/LOAD_TODOS_SUCCESS',
-    LOAD_TODOS_FAILURE = '@@todos/LOAD_TODOS_FAILURE'    
+    LOAD_TODOS_FAILURE = '@@todos/LOAD_TODOS_FAILURE',
+    
+    ADD_TODO = '@@todos/ADD_TODO'
 }

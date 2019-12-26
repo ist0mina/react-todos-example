@@ -34,3 +34,11 @@ export function failureEnhancer<T, K extends keyof T>(state: T, loading: K, erro
         [error]: answer
     }
 }
+
+
+export function setterEnhancer<T, K extends keyof T, U>(state: T, key: K, value: U): T {
+    return {
+        ...state,
+        [key]: value
+    };
+}

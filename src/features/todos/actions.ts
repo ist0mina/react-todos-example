@@ -6,3 +6,5 @@ export const loadTodosAsync = createAsyncAction(
 )<undefined, TodoItem[], string>();
 
 export const preLoadTodos = () => action(TodoActionTypes.LOAD_TODOS_PRELOAD);
+
+export const addTodo = (todo: TodoItem) => action(TodoActionTypes.ADD_TODO, todo);

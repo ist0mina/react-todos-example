@@ -6,5 +6,5 @@ const dataTodoSelector = (state: TodoState): TodoItem[] => state.data;
 
 export const getTodoTableRows = createSelector(
     dataTodoSelector,
-    (data = []): TableRowItem[] => data.map(({ id, text, status }: TodoItem) => ({ cells: [ { text: id.toString() }, { text }, { text: status } ] }))
+    (data = []): TableRowItem[] => data.map(({ text, status }: TodoItem) => ({ cells: [ { text }, { text: status } ] }))
 );

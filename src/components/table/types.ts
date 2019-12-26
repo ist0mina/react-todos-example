@@ -18,7 +18,7 @@ export type TableRowItem = {
     cells: TableCellItem[];
 }
 
-export interface TableBodyProps {
+export interface TableBodyProps extends TableBasicProps {
     rows: TableRowItem[]; 
 }
 

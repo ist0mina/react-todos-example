@@ -5,8 +5,7 @@ import { SimpleTable, TableColumItem, SimpleTableProps } from '../../components'
 import { getTodoTableRows } from '../../features/todos/selector';
 import { TodoTableStateProps, TodoTableProps } from '.';
 
-const columns: TableColumItem[] = [
-    { title: 'Id' },
+const columns: TableColumItem[] = [    
     { title: 'Text' },
     { title: 'Status' }
 ]
@@ -19,5 +18,5 @@ const mapStateToProps = (state: Types.RootState): TodoTableStateProps => {
 
 export const TodoTableContainer = compose<SimpleTableProps, TodoTableProps>(
     connect(mapStateToProps),
-    defaultProps({ columns })
+    defaultProps({ columns, hasNN: true })
 )(SimpleTable);

@@ -2,8 +2,9 @@ import React from 'react';
 import { TodoListProps } from '.';
 import { TodoTableContainer } from '../todo-table';
 import { TodoToolbar } from '../todo-toolbar';
+import { SimpleSpinner } from '../../components';
 
-export const TodoList: React.FC<TodoListProps> = () => {
+export const TodoList: React.FC<TodoListProps> = ({ loading }: TodoListProps) => {    
     return (
         <div className="container">
             <div className="row">
@@ -14,8 +15,10 @@ export const TodoList: React.FC<TodoListProps> = () => {
             <div className="row">
                 <TodoToolbar />
             </div>
-            <div className="row">
-                <TodoTableContainer />
+            <div className="row">                
+                {
+                    loading ? <SimpleSpinner size="2x" title="loading table..."/> : <TodoTableContainer />
+                }
             </div>
         </div>
     )

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import { TableHeader, SimpleTableProps, TableBody } from '.';
+import './Table.css';
 
-export const SimpleTable: React.FC<SimpleTableProps> = ({ columns, rows }: SimpleTableProps) => {    
+export const SimpleTable: React.FC<SimpleTableProps> = ({ columns, rows, hasNN = false }: SimpleTableProps) => {    
     return (
         <Table striped bordered hover>
-            <TableHeader columns={columns}/>
-            <TableBody rows={rows}/>            
+            <TableHeader columns={columns} hasNN={hasNN}/>
+            <TableBody rows={rows} hasNN={hasNN}/>            
         </Table>
     );
 }

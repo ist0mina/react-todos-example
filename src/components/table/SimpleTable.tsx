@@ -3,11 +3,11 @@ import { Table } from 'react-bootstrap';
 import { TableHeader, SimpleTableProps, TableBody } from '.';
 import './Table.css';
 
-export const SimpleTable: React.FC<SimpleTableProps> = ({ columns, rows, hasNN = false }: SimpleTableProps) => {    
+export const SimpleTable: React.FC<SimpleTableProps> = ({ columns, rows, hasNNCol = false, hasControlCol = false }: SimpleTableProps) => {    
     return (
         <Table striped bordered hover>
-            <TableHeader columns={columns} hasNN={hasNN}/>
-            <TableBody rows={rows} hasNN={hasNN}/>            
+            <TableHeader columns={columns} hasNNCol={hasNNCol} hasControlCol={hasControlCol}/>
+            <TableBody rows={rows} hasNNCol={hasNNCol} hasControlCol={hasControlCol}/>            
         </Table>
     );
 }

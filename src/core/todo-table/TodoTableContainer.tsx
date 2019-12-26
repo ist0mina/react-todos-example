@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Types from 'MyReduxTypes';
 import { compose, defaultProps } from 'recompose';
-import { SimpleTable, TableColumItem, SimpleTableProps } from '../../components';
+import { SimpleTable, TableColumItem, SimpleTableProps, TableHeaderProps } from '../../components';
 import { getTodoTableRows } from '../../features/todos/selector';
 import { TodoTableStateProps, TodoTableProps } from '.';
 
@@ -18,5 +18,5 @@ const mapStateToProps = (state: Types.RootState): TodoTableStateProps => {
 
 export const TodoTableContainer = compose<SimpleTableProps, TodoTableProps>(
     connect(mapStateToProps),
-    defaultProps({ columns, hasNN: true })
+    defaultProps<TableHeaderProps>({ columns, hasNNCol: true, hasControlCol: true })
 )(SimpleTable);

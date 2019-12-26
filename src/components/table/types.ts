@@ -1,5 +1,6 @@
 export interface TableBasicProps {
-    hasNN?: boolean;
+    hasNNCol?: boolean;
+    hasControlCol?: boolean;
 }
 
 export type TableColumItem = {

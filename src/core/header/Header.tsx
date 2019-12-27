@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { RoutePaths } from '../../const/routes';
 import { Link } from 'react-router-dom';
 import { NavButton } from '../../components';
-import { HeaderProps } from '.';
+import { HeaderProps } from './types';
 
 type NavItem = {
     route: string;

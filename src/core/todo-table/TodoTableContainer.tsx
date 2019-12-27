@@ -3,7 +3,7 @@ import Types from 'MyReduxTypes';
 import { compose, defaultProps } from 'recompose';
 import { SimpleTable, TableColumItem, SimpleTableProps, TableHeaderProps } from '../../components';
 import { getTodoTableRows } from '../../features/todos/selector';
-import { TodoTableStateProps, TodoTableProps } from '.';
+import { TodoTableStateProps, TodoTableProps } from './types';
 
 const columns: TableColumItem[] = [    
     { title: 'Text' },

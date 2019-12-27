@@ -9,3 +9,8 @@ export const getTodoTableRows = createSelector(
     dataTodoSelector,
     (data = []): TableRowItem[] => data.map(({ text, status }: TodoItem) => ({ cells: [ { text }, { text: getTodoStatusTypeValue(status) } ] }))
 );
+
+export const getMaxId = createSelector(
+    dataTodoSelector,
+    (data = []): number => data.reduce((acc: number, { id = -1 }: TodoItem) => id > acc ? id : acc, 0)    
+);

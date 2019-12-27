@@ -18,7 +18,12 @@ export default (state = initialState, action: TodoAction) => {
         case TodoActionTypes.LOAD_TODOS_SUCCESS:
             return successEnhancerWithAnswer<TodoState, TodoStateKeys, TodoItem[]>(state, 'data', 'loading', action.payload);
         case TodoActionTypes.LOAD_TODOS_FAILURE:
-            return failureEnhancer<TodoState, TodoStateKeys>(state, 'loading', 'errorLoading', action.payload);        
+            return failureEnhancer<TodoState, TodoStateKeys>(state, 'loading', 'errorLoading', action.payload);    
+        case TodoActionTypes.ADD_TODO:
+            return {
+                ...state,
+                data: [ ...state.data, action.payload ]
+            }    
         default:
             return state;
     }

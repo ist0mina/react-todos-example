@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Types from 'MyReduxTypes';
-import { Header, HeaderStateProps } from '.';
+import { Header } from './Header';
+import { HeaderStateProps } from './types';
 
 const mapStateToProps = (state: Types.RootState): HeaderStateProps => {
     const { router: { location: { pathname = "" } = {} } = {} } = state;

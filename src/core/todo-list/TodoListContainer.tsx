@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import Types from 'MyReduxTypes';
 import { bindActionCreators, Dispatch } from 'redux';
 import { compose, lifecycle } from 'recompose';
-import { TodoList, TodoListProps, TodoListDispatchProps, TodoListStateProps } from '.';
+import { TodoList } from './TodoList';
+import { TodoListProps, TodoListDispatchProps, TodoListStateProps } from './types';
 import { preLoadTodos } from '../../features/todos/actions';
 
 const mapStateToProps = (state: Types.RootState): TodoListStateProps => {    

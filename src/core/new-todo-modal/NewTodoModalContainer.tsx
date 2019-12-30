@@ -3,7 +3,7 @@ import Types from 'MyReduxTypes';
 import { bindActionCreators, Dispatch } from 'redux';
 import { compose, withHandlers } from 'recompose';
 import { NewTodoModal } from './NewTodoModal';
-import { NewTodoModalStateProps, NewTodoModalDispatchProps, NewTodoModalProps, NewTodoModalOwnProps, NewTodoModalState } from './types';
+import { NewTodoModalStateProps, NewTodoModalDispatchProps, NewTodoModalProps, NewTodoModalOwnProps } from './types';
 import { ToggleFieldType } from '../../features/toggle/types';
 import { toggle } from '../../features/toggle/actions';
 import { getMaxId } from '../../features/todos/selector';
@@ -21,13 +21,14 @@ const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>): NewTodoModalD
 
 export const NewTodoModalContainer = compose<NewTodoModalProps, NewTodoModalDispatchProps>(
     connect(mapStateToProps, mapDispatchToProps),
-    withHandlers<NewTodoModalStateProps & NewTodoModalDispatchProps & NewTodoModalState, NewTodoModalOwnProps>({
+    withHandlers<NewTodoModalStateProps & NewTodoModalDispatchProps, NewTodoModalOwnProps>({
         handleClose: ({ toggle }) => () => { 
             if (toggle) {
                 toggle(ToggleFieldType.NEW_TODO_MODAL); 
             }
         },
-        handleOk: ({ toggle, maxId = -1, text = "", addTodo }) => () => {
+        handleOk: ({ toggle, maxId = -1, addTodo }) => (text = "") => {
+            console.log(text);
             const todo: TodoItem = { id: maxId + 1, text, status: TodoStatusType.CREATED };
             if (addTodo) {
                 addTodo(todo);

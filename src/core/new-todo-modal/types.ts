@@ -13,7 +13,7 @@ export interface NewTodoModalDispatchProps {
 
 export interface NewTodoModalOwnProps {
     handleClose: () => void;
-    handleOk: () => void;
+    handleOk: (text: string) => void;
 }
 
 export interface NewTodoModalState {

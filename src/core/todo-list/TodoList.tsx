@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoListProps } from './types';
 import { TodoTableContainer } from '../todo-table';
-import { TodoToolbar } from '../todo-toolbar';
+import { TodoToolbarContainer } from '../todo-toolbar';
 import { NewTodoModalContainer } from '../new-todo-modal';
 import { SimpleSpinner } from '../../components';
 
@@ -15,7 +15,7 @@ export const TodoList: React.FC<TodoListProps> = ({ loading }: TodoListProps) =>
                 </div>
             </div>
             <div className="row">
-                <TodoToolbar />
+                <TodoToolbarContainer />
             </div>
             <div className="row">                
                 {

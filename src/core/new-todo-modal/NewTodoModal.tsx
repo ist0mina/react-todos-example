@@ -9,6 +9,11 @@ export const NewTodoModal: React.FC<NewTodoModalProps> = ({ show = false, handle
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => { setText(event.target.value); }
 
+    const onClickOK = () => {
+        handleOk(text);
+        setText("");
+    };
+
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -25,7 +30,7 @@ export const NewTodoModal: React.FC<NewTodoModalProps> = ({ show = false, handle
                     <FontAwesomeIcon icon={faBan} className="mr-1"/> 
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={handleOk}>
+                <Button variant="primary" onClick={onClickOK}>
                     <FontAwesomeIcon icon={faCheck} className="mr-1"/> 
                     Ok
                 </Button>

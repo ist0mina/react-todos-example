@@ -27,15 +27,11 @@ export const NewTodoModalContainer = compose<NewTodoModalProps, NewTodoModalDisp
                 toggle(ToggleFieldType.NEW_TODO_MODAL); 
             }
         },
-        handleOk: ({ toggle, maxId = -1, addTodo }) => (text = "") => {
-            console.log(text);
+        handleOk: ({ maxId = -1, addTodo }) => (text = "") => {            
             const todo: TodoItem = { id: maxId + 1, text, status: TodoStatusType.CREATED };
             if (addTodo) {
                 addTodo(todo);
-            }
-            if (toggle) {
-                toggle(ToggleFieldType.NEW_TODO_MODAL);
-            }
+            }            
         }
     })
 )(NewTodoModal);

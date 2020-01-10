@@ -4,7 +4,7 @@ import * as actions from './actions';
 
 type ToggleAction = ActionType<typeof actions>;
 
-const initialState: ToggleState = {};
+export const initialState: ToggleState = {};
 
 export default (state = initialState, action: ToggleAction) => {
     switch(action.type){

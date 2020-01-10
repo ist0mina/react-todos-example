@@ -7,7 +7,7 @@ export type TodoAction = ActionType<typeof actions>;
 
 type TodoStateKeys = keyof TodoState;
 
-const initialState: TodoState = {
+export const initialState: TodoState = {
     data: []    
 }
 

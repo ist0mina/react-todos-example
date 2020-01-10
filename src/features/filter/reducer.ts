@@ -4,7 +4,7 @@ import { FilterState, FilterActionTypes } from './types';
 
 export type FilterAction = ActionType<typeof actions>;
 
-const initialState: FilterState = {
+export const initialState: FilterState = {
     filterStatus: []
 }
 

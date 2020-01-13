@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderContainer> active buttons active todo detail button 1`] = `"<header><nav class=\\"navbar navbar-expand navbar-light bg-light\\"><div class=\\"mr-auto navbar-nav\\"><div class=\\"nav-item\\"><a href=\\"/\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"btn btn-outline-secondary\\">Todo list</button></a></div><div class=\\"nav-item\\"><a href=\\"/todo\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"nav-active btn btn-outline-secondary\\">Todo detail</button></a></div></div></nav></header>"`;
+
+exports[`<HeaderContainer> active buttons active todo list button 1`] = `"<header><nav class=\\"navbar navbar-expand navbar-light bg-light\\"><div class=\\"mr-auto navbar-nav\\"><div class=\\"nav-item\\"><a href=\\"/\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"nav-active btn btn-outline-secondary\\">Todo list</button></a></div><div class=\\"nav-item\\"><a href=\\"/todo\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"btn btn-outline-secondary\\">Todo detail</button></a></div></div></nav></header>"`;

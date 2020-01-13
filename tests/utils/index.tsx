@@ -3,7 +3,7 @@ import { mergeDeepRight } from 'ramda';
 import { RouterState, ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 
-//import Types from 'MyReduxTypes';
+import Types from 'MyReduxTypes';
 
 import { history, createStoreWithMiddleware } from '../../src/store';
 import rootReducer from '../../src/store/rootReducer';
@@ -21,8 +21,7 @@ const routerInitialState: RouterState = { location: { pathname: '/', search: "",
 export const mockData = () => ({});
 
 export const mockStore = (customState = {}) => {
-    //const root: Types.RootState = rootReducer(history)({ 
-    const root = rootReducer(history)({ 
+    const root: Types.RootState = rootReducer(history)({     
         router: routerInitialState, 
         todos: todosInitialState, 
         toggle: toogleInitialState, 

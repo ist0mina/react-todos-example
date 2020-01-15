@@ -16,8 +16,4 @@ export interface NewTodoModalOwnProps {
     handleOk: (text: string) => void;
 }
 
-export interface NewTodoModalState {
-    text: string;
-}
-
-export type NewTodoModalProps = NewTodoModalStateProps & NewTodoModalDispatchProps & NewTodoModalOwnProps & NewTodoModalState;
+export type NewTodoModalProps = NewTodoModalStateProps & NewTodoModalDispatchProps & NewTodoModalOwnProps;

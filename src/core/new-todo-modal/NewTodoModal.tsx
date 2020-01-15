@@ -43,7 +43,7 @@ export const NewTodoModal: React.FC<NewTodoModalProps> = ({ show = false, handle
                 <Modal.Body>
                     <Form.Group controlId="formNewTodoText">
                         <Form.Label>Todo text</Form.Label>
-                        <Form.Control required placeholder="Todo text..." value={text} onChange={onChange}/>
+                        <Form.Control required type="text" placeholder="Todo text..." value={text} onChange={onChange}/>
                         <Form.Control.Feedback type="invalid">Need enter new todo</Form.Control.Feedback>
                     </Form.Group>
                 </Modal.Body>

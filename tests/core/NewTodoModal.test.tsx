@@ -59,4 +59,20 @@ describe('<NewTodoModalContainer>', () => {
 
         expect(input.value).toBe("");        
     });
+
+    it('error validation when submit form with empty text for new todo', () => {
+        const mockHandleOk = jest.fn();
+        const mockHandleClose = jest.fn();
+
+        const props: NewTodoModalProps = {
+            handleClose: mockHandleClose,
+            handleOk: mockHandleOk,
+            show: true
+        };
+
+        const component = reduxify({ Component: NewTodoModal, props });
+        const wrapper = makeMountrender(component)();    
+        
+        expect(snapshotify(wrapper)).toMatchSnapshot();
+    });
 });

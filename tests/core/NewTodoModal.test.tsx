@@ -73,6 +73,27 @@ describe('<NewTodoModalContainer>', () => {
         const component = reduxify({ Component: NewTodoModal, props });
         const wrapper = makeMountrender(component)();    
         
+        wrapper.find('form').simulate('submit');
         expect(snapshotify(wrapper)).toMatchSnapshot();
+    });
+
+    it('call ok when submit form with new todo', () => {
+        const mockHandleOk = jest.fn();
+        const mockHandleClose = jest.fn();
+
+        const props: NewTodoModalProps = {
+            handleClose: mockHandleClose,
+            handleOk: mockHandleOk,
+            show: true
+        };
+
+        const component = reduxify({ Component: NewTodoModal, props });
+        const wrapper = makeMountrender(component)();  
+
+        wrapper.find('input').simulate("change", { target: { value: "new todo" }});
+        console.log(wrapper.html());
+        wrapper.find('form').simulate('submit');
+
+        expect(mockHandleOk).toHaveBeenCalled();
     });
 });

@@ -1,3 +1,5 @@
+import Types from 'MyReduxTypes';
+
 import { makeMountrender, reduxify, snapshotify, mockStore } from '../utils';
 
 import { NewTodoModalContainer, NewTodoModal, NewTodoModalProps } from '../../src/core/new-todo-modal';
@@ -90,10 +92,36 @@ describe('<NewTodoModalContainer>', () => {
         const component = reduxify({ Component: NewTodoModal, props });
         const wrapper = makeMountrender(component)();  
 
-        wrapper.find('input').simulate("change", { target: { value: "new todo" }});
-        console.log(wrapper.html());
+        wrapper.find('input').simulate("change", { target: { value: "new todo" }});        
         wrapper.find('form').simulate('submit');
 
         expect(mockHandleOk).toHaveBeenCalled();
+    });
+
+    it('close modal when submit form with new todo', () => {
+        const store = mockStore();
+        store.dispatch({ type: ToggleActionType.TOGGLE, payload: ToggleFieldType.NEW_TODO_MODAL });
+
+        const component = reduxify({ Component: NewTodoModalContainer, store });
+        const wrapper = makeMountrender(component)(); 
+        
+        wrapper.find('input').simulate("change", { target: { value: "new todo" }});
+        wrapper.find('form').simulate('submit');
+        expect(wrapper.find('div.modal-backdrop.show')).toHaveLength(0);
+    });
+
+    it('add new todo to store when submit correct form', () => {
+        const store = mockStore();
+        store.dispatch({ type: ToggleActionType.TOGGLE, payload: ToggleFieldType.NEW_TODO_MODAL });
+        
+        const component = reduxify({ Component: NewTodoModalContainer, store });
+        const wrapper = makeMountrender(component)(); 
+        
+        wrapper.find('input').simulate("change", { target: { value: "new todo" }});
+        wrapper.find('form').simulate('submit');            
+
+        const state: Types.RootState = store.getState() as Types.RootState;
+        const { todos: { data = [] } = {} } = state;
+        expect(data).toHaveLength(1);
     });
 });

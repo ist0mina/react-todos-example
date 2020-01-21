@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoTableContainer> matches snapshots 1`] = `"<table class=\\"table table-striped table-bordered table-hover\\"><thead><tr><th class=\\"td-control\\"></th><th class=\\"td-nn\\">#</th><th>Text</th><th>Status</th></tr></thead><tbody></tbody></table>"`;

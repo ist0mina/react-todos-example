@@ -5,7 +5,7 @@ import { SimpleTable, TableColumItem, SimpleTableProps, TableHeaderProps } from 
 import { getTodoTableRows } from '../../features/todos/selector';
 import { TodoTableStateProps, TodoTableProps } from './types';
 
-const columns: TableColumItem[] = [    
+export const columns: TableColumItem[] = [    
     { title: 'Text' },
     { title: 'Status' }
 ]

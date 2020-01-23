@@ -1,4 +1,4 @@
-import { TodoTableContainer } from '../../src/core/todo-table';
+import { TodoTableContainer, columns } from '../../src/core/todo-table';
 
 import { TodoActionTypes } from '../../src/features/todos/types';
 
@@ -24,5 +24,31 @@ describe('<TodoTableContainer>', () => {
         expect(wrapper.find('tbody').find('tr').length).toBe(mockTodos.length);
     });
 
-    
+    it('table has columns equal constant columns length', () => {
+            
+        const component = reduxify({ Component: TodoTableContainer });
+        const wrapper = makeMountrender(component)();
+
+        const thAllCount = wrapper.find('th').length;
+        const thControlCount = wrapper.find('th.td-control').length;
+        const thNNCount = wrapper.find('th.td-nn').length;
+
+        const thCount = thAllCount - thControlCount - thNNCount;
+
+        expect(thCount).toBe(columns.length);
+    });
+
+    it('table has nn column', () => {
+        const component = reduxify({ Component: TodoTableContainer });
+        const wrapper = makeMountrender(component)();
+
+        expect(wrapper.find('th.td-nn')).toHaveLength(1);
+    });
+
+    it('table has control column', () => {
+        const component = reduxify({ Component: TodoTableContainer });
+        const wrapper = makeMountrender(component)();
+
+        expect(wrapper.find('th.td-control')).toHaveLength(1);
+    });
 });

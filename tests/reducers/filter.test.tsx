@@ -1,6 +1,6 @@
 import filterReducer, { initialState } from '../../src/features/filter/reducer';
-import { setFilterStatus } from '../../src/features/filter/actions';
-import { TodoStatusType } from '../../src/features/todos/types';
+import { setFilterStatus, setFilterActivity } from '../../src/features/filter/actions';
+import { TodoStatusType, TodoActivityType } from '../../src/features/todos/types';
 
 describe('filter reducer', () => {
     it('set filter status values', () => {
@@ -9,6 +9,13 @@ describe('filter reducer', () => {
         expect(filterReducer(initialState, setFilterStatus(values))).toEqual({
             ...initialState,
             filterStatus: values
+        });
+    });
+
+    it('set filter activity type', () => {
+        expect(filterReducer(initialState, setFilterActivity(TodoActivityType.ACTIVE))).toEqual({
+            ...initialState,
+            filterActivity: TodoActivityType.ACTIVE
         });
     });
 });

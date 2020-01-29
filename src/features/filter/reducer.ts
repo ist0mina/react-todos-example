@@ -18,7 +18,7 @@ export default (state = initialState, action: FilterAction) => {
         case (FilterActionTypes.SET_FILTER_ACTIVITY):
             return {
                 ...state,
-                fileterActivity: action.payload
+                filterActivity: action.payload
             }
         default: 
             return state;

@@ -1,6 +1,6 @@
 import todosReducer, { initialState } from '../../src/features/todos/reducer';
-import { loadTodosAsync } from '../../src/features/todos/actions';
-import { TodoState } from '../../src/features/todos/types';
+import { loadTodosAsync, addTodo } from '../../src/features/todos/actions';
+import { TodoState, TodoItem, TodoStatusType } from '../../src/features/todos/types';
 
 import { mockTodos } from '../../src/services/mockData';
 
@@ -57,5 +57,23 @@ describe('todos reducer', () => {
             loading: false,
             error: errorText
         });
-    });    
+    });
+    
+    it('add new todo', () => {
+       const state: TodoState = {
+           ...initialState,
+           data: mockTodos
+       };
+
+       const newTodo: TodoItem = {
+           id: 6,
+           text: 'new todo',
+           status: TodoStatusType.CREATED
+       };
+
+       expect(todosReducer(state, addTodo(newTodo))).toEqual({
+           ...state,
+           data: [ ...state.data, newTodo ]
+       });
+    });
 });

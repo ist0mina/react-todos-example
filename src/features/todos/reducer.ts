@@ -14,11 +14,11 @@ export const initialState: TodoState = {
 export default (state = initialState, action: TodoAction) => {
     switch (action.type) {
         case TodoActionTypes.LOAD_TODOS_REQUEST:
-            return requestEnhancerWithDefault<TodoState, TodoStateKeys, TodoItem[]>(state, 'data', 'loading', 'errorLoading', []);
+            return requestEnhancerWithDefault<TodoState, TodoStateKeys, TodoItem[]>(state, 'data', 'loading', 'error', []);
         case TodoActionTypes.LOAD_TODOS_SUCCESS:
             return successEnhancerWithAnswer<TodoState, TodoStateKeys, TodoItem[]>(state, 'data', 'loading', action.payload);
         case TodoActionTypes.LOAD_TODOS_FAILURE:
-            return failureEnhancer<TodoState, TodoStateKeys>(state, 'loading', 'errorLoading', action.payload);    
+            return failureEnhancer<TodoState, TodoStateKeys>(state, 'loading', 'error', action.payload);    
         case TodoActionTypes.ADD_TODO:
             return {
                 ...state,

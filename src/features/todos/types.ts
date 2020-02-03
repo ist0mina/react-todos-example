@@ -21,7 +21,7 @@ export type TodoItem = {
 export interface TodoState {
     data: TodoItem[]; 
     loading?: boolean;
-    errorLoading?: boolean;    
+    error?: string;    
 }
 
 export enum TodoActionTypes {

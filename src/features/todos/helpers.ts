@@ -1,11 +1,7 @@
-import { TodoStatusType } from './types';
+import { TodoStatusType, TodoItem } from './types';
 
 type TodoStatusTypeValue = {
-    [TodoStatusType.CREATED]: string;
-    [TodoStatusType.IN_WORK]: string;
-    [TodoStatusType.PAUSED]: string;
-    [TodoStatusType.DONE]: string;
-    [TodoStatusType.CLOSED]: string;
+    [key in TodoStatusType]: string;
 }
 
 const TodoStatusTypeValues: TodoStatusTypeValue = {
@@ -17,3 +13,14 @@ const TodoStatusTypeValues: TodoStatusTypeValue = {
 }
 
 export const getTodoStatusTypeValue = (value: TodoStatusType): string => TodoStatusTypeValues[value];
+
+export const emptyTodo: TodoItem = ({
+    id: -1, 
+    text: '', 
+    status: TodoStatusType.CREATED, 
+    dateCreated: new Date(),
+});
+
+export const getMaxTodoId = (data: TodoItem[]) => Math.max(-1, ...data.map(({ id }: TodoItem) => id));
+
+export const getTodoStatusList = () => Object.entries(TodoStatusTypeValues).map(([key, value]) => ({key, value}));

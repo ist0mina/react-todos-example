@@ -16,10 +16,13 @@ export type TodoItem = {
     id: number;
     text: string;
     status: TodoStatusType;
+    dateCreated: Date;
+    dateLastChanged?: Date;
 }
 
 export interface TodoState {
     data: TodoItem[]; 
+    selected: number;
     loading?: boolean;
     error?: string;    
 }
@@ -30,5 +33,10 @@ export enum TodoActionTypes {
     LOAD_TODOS_SUCCESS = '@@todos/LOAD_TODOS_SUCCESS',
     LOAD_TODOS_FAILURE = '@@todos/LOAD_TODOS_FAILURE',
     
-    ADD_TODO = '@@todos/ADD_TODO'
+    ADD_TODO = '@@todos/ADD_TODO',
+    OPEN_TODO = '@@todos/OPEN_TODO',
+    SAVE_TODO = '@@todos/SAVE_TODO',
+    UPDATE_TODO = '@@todos/UPDATE_TODO',
+    SELECT_TODO = '@@todos/SELECT_TODO',
+    DELETE_TODO = '@@todos/DELETE_TODO',    
 }

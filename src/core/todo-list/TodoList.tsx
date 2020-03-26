@@ -1,27 +1,20 @@
 import React from 'react';
-import { TodoListProps } from './types';
-import { TodoTableContainer } from '../todo-table';
-import { TodoToolbarContainer } from '../todo-toolbar';
-import { NewTodoModalContainer } from '../new-todo-modal';
-import { SimpleSpinner } from '../../components';
+import { ListGroup } from 'react-bootstrap';
 
-export const TodoList: React.FC<TodoListProps> = ({ loading }: TodoListProps) => {    
-    return (
-        <div className="container">
-            <NewTodoModalContainer />
-            <div className="row">
-                <div className="col">
-                    <h1>Todo list</h1>
-                </div>
-            </div>
-            <div className="row">
-                <TodoToolbarContainer />
-            </div>
-            <div className="row">                
-                {
-                    loading ? <SimpleSpinner size="2x" title="loading table..."/> : <TodoTableContainer />
-                }
-            </div>
-        </div>
-    )
+import { TodoItemContainer } from '../todo-item';
+
+import { TodoListProps } from './types';
+
+export const TodoList: React.FC<TodoListProps> = ({ ids }: TodoListProps) => {
+    return (        
+        <ListGroup className="w-100">
+            {
+                ids.map((id: number) => {
+                    return (
+                        <TodoItemContainer key={id} id={id}/>
+                    );
+                })
+            }
+        </ListGroup>
+    );
 }

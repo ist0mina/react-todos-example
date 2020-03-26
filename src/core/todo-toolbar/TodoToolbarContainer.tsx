@@ -1,21 +1,29 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { compose, withHandlers } from 'recompose';
+
 import Types from 'MyReduxTypes';
+
+import { toggleAllTodos } from '../../features/toggle/actions';
+import { isAllOpen } from '../../features/toggle/selector';
+import { loadTodosAsync, openTodo } from '../../features/todos/actions';
+
 import { TodoToolbar } from './TodoToolbar';
-import { TodoToolbarDispatchProps, TodoToolbarProps, TodoToolbarOwnProps } from './types';
-import { toggle } from '../../features/toggle/actions';
-import { ToggleFieldType } from '../../features/toggle/types';
+import { TodoToolbarDispatchProps, TodoToolbarStateProps } from './types';
 
-const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>): TodoToolbarDispatchProps => bindActionCreators({ toggleNewTodo: toggle }, dispatch);
+const mapStateToProps = (state: Types.RootState): TodoToolbarStateProps => {
+    const { todos: { loading = false } } = state;
+    
+    return {
+        allOpen: isAllOpen(state),
+        disableBtn: loading
+    };
+}
 
-export const TodoToolbarContainer = compose<TodoToolbarProps, TodoToolbarDispatchProps>(
-    connect(null, mapDispatchToProps),
-    withHandlers<TodoToolbarDispatchProps, TodoToolbarOwnProps>({
-        onNewTodo: ({ toggleNewTodo }) => () => {  
-            if (toggleNewTodo) {
-                toggleNewTodo(ToggleFieldType.NEW_TODO_MODAL); 
-            }
-        }
-    })
-)(TodoToolbar);
+const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>): TodoToolbarDispatchProps => 
+    bindActionCreators({ 
+        openTodo, 
+        loadTodos: loadTodosAsync.request, 
+        toggleTodos: toggleAllTodos,
+    }, dispatch);
+
+export const TodoToolbarContainer = connect(mapStateToProps, mapDispatchToProps)(TodoToolbar);

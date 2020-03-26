@@ -10,7 +10,7 @@ import rootReducer from '../../src/store/rootReducer';
 
 import { initialState as todosInitialState } from '../../src/features/todos/reducer';
 import { initialState as toogleInitialState } from '../../src/features/toggle/reducer';
-import { initialState as filterTreeInitialState } from '../../src/features/filter/reducer';
+import { initialState as filterInitialState } from '../../src/features/filter/reducer';
 
 import { mount } from '../setup/test-setup';
 
@@ -25,7 +25,7 @@ export const mockStore = (customState = {}) => {
         router: routerInitialState, 
         todos: todosInitialState, 
         toggle: toogleInitialState, 
-        filter: filterTreeInitialState 
+        filter: filterInitialState 
     }, { type: '@@INIT' });
     const state = mergeDeepRight(root, customState);
     return createStoreWithMiddleware(rootReducer(history), state);

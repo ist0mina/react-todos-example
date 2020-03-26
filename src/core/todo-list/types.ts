@@ -1,9 +1,5 @@
-export interface TodoListDispatchProps {
-    preLoadTodos: () => void;
-}
-
 export interface TodoListStateProps {
-    loading: boolean;
-}
+    ids: number[];
+};
 
-export type TodoListProps = TodoListStateProps & TodoListDispatchProps;
+export type TodoListProps = TodoListStateProps;

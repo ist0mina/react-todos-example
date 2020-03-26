@@ -1,16 +1,20 @@
 import { createSelector } from 'reselect';
 import { TodoState, TodoItem } from './types';
-import { getTodoStatusTypeValue } from './helpers';
-import { TableRowItem } from '../../components';
+import {emptyTodo} from './helpers';
 
 const dataTodoSelector = (state: TodoState): TodoItem[] => state.data;
 
-export const getTodoTableRows = createSelector(
+const todoSelector = (state: TodoState, id: number): TodoItem => { 
+    const todo = state.data.find((todo: TodoItem) => todo.id === id);
+    return todo ? todo : emptyTodo;
+}
+
+export const getTodoIds = createSelector(
     dataTodoSelector,
-    (data = []): TableRowItem[] => data.map(({ text, status }: TodoItem) => ({ cells: [ { text }, { text: getTodoStatusTypeValue(status) } ] }))
+    (data = []): number[] => data.map(({ id }: TodoItem) => id)
 );
 
-export const getMaxId = createSelector(
-    dataTodoSelector,
-    (data = []): number => data.reduce((acc: number, { id = -1 }: TodoItem) => id > acc ? id : acc, 0)    
+export const getTodo = createSelector(
+    todoSelector,
+    (item) => item
 );

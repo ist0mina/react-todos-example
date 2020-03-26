@@ -1,9 +1,15 @@
-import {  call, put, takeEvery, all, fork, select } from 'redux-saga/effects';
+import {  call, put, takeEvery, all, fork, select, actionChannel, take } from 'redux-saga/effects';
+
+import Types from 'MyReduxTypes';
+
 import { loadData } from '../../services/api';
 import { mockTodos } from '../../services/mockData';
-import { loadTodosAsync } from './actions';
+
+import { ToggleFieldType } from '../toggle/types';
+import { toggleSimple } from '../toggle/actions';
+
+import { loadTodosAsync, openTodo, selectTodo, saveTodo, addTodo, updateTodo } from './actions';
 import { TodoItem, TodoActionTypes } from './types';
-import Types from 'MyReduxTypes';
 
 function* preLoadSaga(){
     const todos: TodoItem[] = yield select((state: Types.RootState) => state.todos.data);
@@ -23,14 +29,42 @@ function* loadTodos(){
     }
 }
 
+function* openTodoSaga(action: ReturnType<typeof openTodo>){
+    yield put(selectTodo(action.payload));
+    yield put(toggleSimple(ToggleFieldType.TODO_MODAL));
+}
+
+function* saveTodoSaga(action: ReturnType<typeof saveTodo>) {
+    const firtherAction = action.payload.id < 0 ? addTodo : updateTodo;
+    yield put(firtherAction(action.payload));
+}
+
 function* watchPreLoadSaga(){
     yield takeEvery(TodoActionTypes.LOAD_TODOS_PRELOAD, preLoadSaga);
 }
 
 function* watchLoadTodos(){
-    yield takeEvery(loadTodosAsync.request, loadTodos);
+    const chanLoad = yield actionChannel(loadTodosAsync.request);
+
+    while(true) {
+        yield take(chanLoad);
+        yield call(loadTodos);
+    }
+}
+
+function* watchOpenTodo(){
+    yield takeEvery(TodoActionTypes.OPEN_TODO, openTodoSaga);
+}
+
+function* watchSaveTodo(){
+    yield takeEvery(TodoActionTypes.SAVE_TODO, saveTodoSaga);
 }
 
 export default function*(){
-    yield all([fork(watchLoadTodos), fork(watchPreLoadSaga)]);
-}
+    yield all([
+        fork(watchLoadTodos), 
+        fork(watchPreLoadSaga),
+        fork(watchOpenTodo),
+        fork(watchSaveTodo)
+    ]);
+};

@@ -1,11 +1,12 @@
-import { ToggleFieldType } from '../../features/toggle/types';
+export interface TodoToolbarStateProps {
+    allOpen: boolean;
+    disableBtn: boolean;
+};
 
 export interface TodoToolbarDispatchProps {
-    toggleNewTodo?: (field: ToggleFieldType) => void;
-}
+    openTodo?: (id: number) => void;
+    loadTodos?: () => void;
+    toggleTodos?: () => void;
+};
 
-export interface TodoToolbarOwnProps {
-    onNewTodo: () => void;
-}
-
-export type TodoToolbarProps = TodoToolbarDispatchProps & TodoToolbarOwnProps;
+export type TodoToolbarProps = TodoToolbarStateProps & TodoToolbarDispatchProps;

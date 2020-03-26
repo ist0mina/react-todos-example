@@ -1,11 +1,18 @@
 export enum ToggleFieldType {
-    NEW_TODO_MODAL = 'newTodoModal'
-}
+    TODO_MODAL = 'todoModal'
+};
 
 export interface ToggleState {
-    [ToggleFieldType.NEW_TODO_MODAL]?: boolean;    
-}
+    [ToggleFieldType.TODO_MODAL]?: boolean; 
+    openTodos?: number[];   
+};
 
 export enum ToggleActionType {
-    TOGGLE = '@@toggle/TOGGLE'
-}
+    TOGGLE_SIMPLE = '@@toggle/TOGGLE_SIMPLE',
+
+    TOGGLE_TODO = '@@toggle/TOGGLE_TODO',    
+
+    TOGGLE_ALL_TODOS = '@@toggle/TOGGLE_ALL_TODOS',
+    CLOSE_ALL_TODOS = '@@toggle/CLOSE_ALL_TODOS',
+    OPEN_ALL_TODOS = '@@toggle/OPEN_ALL_TODOS',
+};

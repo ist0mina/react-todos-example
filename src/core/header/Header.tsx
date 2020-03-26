@@ -11,8 +11,7 @@ type NavItem = {
 };
 
 const navs: NavItem[] = [
-    { route: RoutePaths.ROOT, title: 'Todo list' },
-    { route: RoutePaths.TODO_DETAIL, title: 'Todo detail' }    
+    { route: RoutePaths.ROOT, title: 'Todo list' },    
 ];
 
 const isActive = (curPath: string, route: string): boolean => curPath === route;

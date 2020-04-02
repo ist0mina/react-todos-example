@@ -1,10 +1,7 @@
 import { connect } from 'react-redux';
-
 import Types from 'MyReduxTypes';
-
 import { getTodoIds } from '../../features/todos/selector';
-
-import { TodoList } from './TodoList';
+import TodoList from './TodoList';
 import { TodoListStateProps } from './types';
 
 const mapStateToProps = (state: Types.RootState): TodoListStateProps => {
@@ -13,4 +10,6 @@ const mapStateToProps = (state: Types.RootState): TodoListStateProps => {
     };
 };
 
-export const TodoListContainer = connect(mapStateToProps)(TodoList);
+const TodoListContainer = connect(mapStateToProps)(TodoList);
+
+export default TodoListContainer;

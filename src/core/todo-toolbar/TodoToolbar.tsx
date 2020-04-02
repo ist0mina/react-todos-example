@@ -2,10 +2,9 @@ import React from 'react';
 import { ButtonToolbar, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSync, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-
 import { TodoToolbarProps } from './types';
 
-export const TodoToolbar: React.FC<TodoToolbarProps> = ({ openTodo, allOpen, loadTodos, disableBtn, toggleTodos }: TodoToolbarProps) => {
+const TodoToolbar: React.FC<TodoToolbarProps> = ({ openTodo, allOpen, loadTodos, disableBtn, toggleTodos }: TodoToolbarProps) => {
     const onNewTodo = () => {  
         if (openTodo) {
             openTodo(-1); 
@@ -40,4 +39,6 @@ export const TodoToolbar: React.FC<TodoToolbarProps> = ({ openTodo, allOpen, loa
             </Button>
         </ButtonToolbar>
     );
-}
+};
+
+export default TodoToolbar;

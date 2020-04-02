@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-
 import Types from 'MyReduxTypes';
-
 import { toggleAllTodos } from '../../features/toggle/actions';
 import { isAllOpen } from '../../features/toggle/selector';
 import { loadTodosAsync, openTodo } from '../../features/todos/actions';
-
-import { TodoToolbar } from './TodoToolbar';
+import TodoToolbar from './TodoToolbar';
 import { TodoToolbarDispatchProps, TodoToolbarStateProps } from './types';
 
 const mapStateToProps = (state: Types.RootState): TodoToolbarStateProps => {
@@ -26,4 +23,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>): TodoToolbarDi
         toggleTodos: toggleAllTodos,
     }, dispatch);
 
-export const TodoToolbarContainer = connect(mapStateToProps, mapDispatchToProps)(TodoToolbar);
+const TodoToolbarContainer = connect(mapStateToProps, mapDispatchToProps)(TodoToolbar);
+
+export default TodoToolbarContainer;

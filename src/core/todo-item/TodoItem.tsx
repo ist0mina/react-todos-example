@@ -2,14 +2,10 @@ import React from 'react';
 import { ListGroupItem, Button, Card, Row, Col, ButtonProps } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faAngleDown, faAngleUp, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-
 import { STANDART_DATE_TIME_FORMAT } from '../../const/formats';
-
 import { TodoStatusType } from '../../features/todos/types';
 import { getTodoStatusTypeValue } from '../../features/todos/helpers';
-
 import { formatDateTime } from '../../helpers/datetime';
-
 import { TodoItemProps } from './types';
 
 const getColorByStatus = (status: TodoStatusType): string | undefined => {
@@ -27,7 +23,7 @@ const getColorByStatus = (status: TodoStatusType): string | undefined => {
     }
 };
 
-export const TodoItem: React.FC<TodoItemProps> = ({ text, open, toggle, id, status, dateCreated, dateLastChanged, openTodo }: TodoItemProps) => {
+const TodoItem: React.FC<TodoItemProps> = ({ text, open, toggle, id, status, dateCreated, dateLastChanged, openTodo }: TodoItemProps) => {
     const bodyClassName = !open ? 'd-none' : undefined;
 
     const onToggle = () => {
@@ -95,3 +91,5 @@ export const TodoItem: React.FC<TodoItemProps> = ({ text, open, toggle, id, stat
         </ListGroupItem>
     );
 };
+
+export default TodoItem;

@@ -1,11 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-
 import Types from 'MyReduxTypes';
-
 import { preLoadTodos } from '../../features/todos/actions';
-
-import { TodoPage } from './TodoPage';
+import TodoPage from './TodoPage';
 import { TodoPageDispatchProps, TodoPageStateProps } from './types';
 
 const mapStateToProps = (state: Types.RootState): TodoPageStateProps => {    
@@ -17,4 +14,6 @@ const mapStateToProps = (state: Types.RootState): TodoPageStateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>): TodoPageDispatchProps => bindActionCreators({ preLoadTodos }, dispatch);
 
-export const TodoPageContainer = connect(mapStateToProps, mapDispatchToProps)(TodoPage);
+const TodoPageContainer = connect(mapStateToProps, mapDispatchToProps)(TodoPage);
+
+export default TodoPageContainer;

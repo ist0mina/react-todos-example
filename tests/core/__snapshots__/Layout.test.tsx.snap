@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Layout> matches snapshots 1`] = `"<div><header><nav class=\\"navbar navbar-expand navbar-light bg-light\\"><div class=\\"mr-auto navbar-nav\\"><div class=\\"nav-item\\"><a href=\\"/\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"nav-active btn btn-outline-secondary\\">Todo list</button></a></div><div class=\\"nav-item\\"><a href=\\"/todo\\" class=\\"nav-link\\"><button type=\\"button\\" class=\\"btn btn-outline-secondary\\">Todo detail</button></a></div></div></nav></header></div>"`;

@@ -1,10 +1,17 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
-import { CustomDatetimeProps } from './types';
-import './CustomDatetime.css';
+import './styles.css';
 
-export const CustomDatetime: React.FC<CustomDatetimeProps> = ({ controlId, title = '', selected, onChange = () => {}, disabled }: CustomDatetimeProps) => {
+export interface CustomDatetimeProps {
+    controlId: string;
+    title?: string;
+    selected?: Date;
+    disabled?: boolean;    
+    onChange?: (date: Date | null) => void;    
+};
+
+const CustomDatetime: React.FC<CustomDatetimeProps> = ({ controlId, title = '', selected, onChange = () => {}, disabled }: CustomDatetimeProps) => {
     return (
         <Form.Group controlId={controlId}>
             <Form.Label>{title}</Form.Label>
@@ -23,3 +30,5 @@ export const CustomDatetime: React.FC<CustomDatetimeProps> = ({ controlId, title
         </Form.Group>
     );
 };
+
+export default CustomDatetime;

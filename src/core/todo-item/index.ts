@@ -1,3 +1,5 @@
+import TodoItemContainer from './TodoItemContainer';
+
 export * from './types';
-export * from './TodoItem';
-export  *from './TodoItemContainer';
+
+export default TodoItemContainer;

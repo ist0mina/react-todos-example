@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck } from '@fortawesome/free-solid-svg-icons';
-
 import { ToggleFieldType } from '../../features/toggle/types';
 import { TodoStatusType } from '../../features/todos/types';
 import { getTodoStatusList } from '../../features/todos/helpers';
-
-import { CustomSelect, CustomDatetime } from '../../components';
-
+import CustomSelect from '../../components/custom-select';
+import CustomDatetime from '../../components/custom-datetime';
 import { TodoModalProps } from './types';
 
-export const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, text, id, status, dateCreated, ...restTodoProps }: TodoModalProps) => {    
+const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, text, id, status, dateCreated, dateLastChanged }: TodoModalProps) => {    
     const [newText, setNewText] = useState('');
     const [newStatus, setNewStatus] = useState(TodoStatusType.CREATED);
     const [validated, setValidated] = useState(false);
@@ -44,7 +42,7 @@ export const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, save
                 text: newText, 
                 status: newStatus,
                 dateCreated,
-                ...restTodoProps
+                dateLastChanged
             });  
             onClose();            
         }                
@@ -91,12 +89,24 @@ export const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, save
                         disabled={isNew} 
                         onChange={onChangeStatus}
                     />
-                    <CustomDatetime 
-                        controlId="dateCreated"
-                        title="Date and time creation"
-                        selected={dateCreated}   
-                        disabled                        
-                    />
+                    <Form.Group as={Row} controlId="dateBlock">
+                        <Col sm="6">
+                            <CustomDatetime 
+                                controlId="dateCreated"
+                                title="Date and time creation"
+                                selected={dateCreated}   
+                                disabled                        
+                            />
+                        </Col>
+                        <Col sm="6">
+                            <CustomDatetime 
+                                controlId="dateLastChanged"
+                                title="Date and time last change"
+                                selected={dateLastChanged}                           
+                                disabled
+                            />
+                        </Col>
+                    </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button 
@@ -124,3 +134,5 @@ export const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, save
       </Modal>
     );
 }
+
+export default TodoModal;

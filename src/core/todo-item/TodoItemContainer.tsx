@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-
 import Types from 'MyReduxTypes';
-
 import { getTodo } from '../../features/todos/selector';
 import { TodoItem } from '../../features/todos/types';
 import { openTodo } from '../../features/todos/actions';
 import { isTodoOpen } from '../../features/toggle/selector';
 import { toggleTodo } from '../../features/toggle/actions';
-
-import { TodoItem as TodoItemComponent } from './TodoItem';
+import TodoItemComponent from './TodoItem';
 import { TodoItemStateProps, TodoItemOwnProps } from './types';
 
 const mapStateToProps = (state: Types.RootState, { id }: TodoItemOwnProps): TodoItemStateProps => {
@@ -28,4 +25,6 @@ const mapStateToProps = (state: Types.RootState, { id }: TodoItemOwnProps): Todo
 
 const mapDispatchToProps = (dispatch: Dispatch<Types.RootAction>) => bindActionCreators({ toggle: toggleTodo, openTodo }, dispatch);
 
-export const TodoItemContainer = connect(mapStateToProps, mapDispatchToProps)(TodoItemComponent);
+const TodoItemContainer = connect(mapStateToProps, mapDispatchToProps)(TodoItemComponent);
+
+export default TodoItemContainer;

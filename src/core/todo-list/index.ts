@@ -1,3 +1,5 @@
+import TodoListContainer from './TodoListContainer';
+
 export * from './types';
-export * from './TodoList';
-export * from './TodoListContainer';
+
+export default TodoListContainer;

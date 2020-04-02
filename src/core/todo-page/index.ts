@@ -1,3 +1,4 @@
-export * from './TodoPage';
-export * from './TodoPageContainer';
+import TodoPageContainer from './TodoPageContainer';
+
 export * from './types';
+export default TodoPageContainer;

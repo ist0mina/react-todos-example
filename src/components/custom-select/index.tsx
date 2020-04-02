@@ -1,9 +1,21 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-import { CustomSelectProps, OptionSelect } from './types';
+export type OptionSelect = {
+    key: string;
+    value: string;
+};
 
-export const CustomSelect: React.FC<CustomSelectProps> = ({controlId, title = "", data = [], selected, disabled = false, onChange}: CustomSelectProps) => {    
+export interface CustomSelectProps {
+    controlId: string;
+    title?: string;
+    data?: OptionSelect[];
+    selected?: string;
+    disabled?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+const CustomSelect: React.FC<CustomSelectProps> = ({controlId, title = "", data = [], selected, disabled = false, onChange}: CustomSelectProps) => {    
     return (
         <Form.Group controlId={controlId}>
             <Form.Label>{title}</Form.Label>
@@ -19,3 +31,5 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({controlId, title = ""
         </Form.Group>
     );    
 };
+
+export default CustomSelect;

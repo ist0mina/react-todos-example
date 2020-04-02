@@ -1,3 +1,4 @@
-export * from './TodoModal';
-export * from './TodoModalContainer';
+import TodoModalContainer from './TodoModalContainer';
+
 export * from './types';
+export default TodoModalContainer;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import store, { history } from './store';
+import store from './store';
 import './App.css';
-import { Routes } from './core/routes';
+import Layout from './core/layout';
+import TodoPage from './core/todo-page';
 
 const App: React.FC = () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Routes />
-    </ConnectedRouter>
+  <Provider store={store}>    
+    <Layout>
+      <TodoPage />
+    </Layout>    
   </Provider>
 );
 

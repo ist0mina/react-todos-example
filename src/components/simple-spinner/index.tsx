@@ -7,10 +7,12 @@ interface SimpleSpinnerProps {
     size?: FontAwesomeIconProps['size'];
 }
 
-export const SimpleSpinner: React.FC<SimpleSpinnerProps> = ({ title = '', size = "lg" }: SimpleSpinnerProps) => {
+const SimpleSpinner: React.FC<SimpleSpinnerProps> = ({ title = '', size = "lg" }: SimpleSpinnerProps) => {
     return (
         <div className="d-flex align-items-center">
             <FontAwesomeIcon icon={faSpinner} spin size={size} className="mr-2"/>{title}
         </div>
     )
-}
+};
+
+export default SimpleSpinner;

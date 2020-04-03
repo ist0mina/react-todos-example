@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { TodoState, TodoItem } from './types';
-import {emptyTodo} from './helpers';
+import { emptyTodo } from './helpers';
 
 const dataTodoSelector = (state: TodoState): TodoItem[] => state.data;
 

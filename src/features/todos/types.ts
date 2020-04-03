@@ -22,7 +22,7 @@ export type TodoItem = {
 
 export interface TodoState {
     data: TodoItem[]; 
-    selected: number;
+    selected: TodoItem;
     loading?: boolean;
     error?: string;    
 }

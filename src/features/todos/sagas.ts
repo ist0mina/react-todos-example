@@ -1,15 +1,12 @@
 import {  call, put, takeEvery, all, fork, select, actionChannel, take } from 'redux-saga/effects';
-
 import Types from 'MyReduxTypes';
-
 import { loadData } from '../../services/api';
 import { mockTodos } from '../../services/mockData';
-
 import { ToggleFieldType } from '../toggle/types';
 import { toggleSimple } from '../toggle/actions';
-
 import { loadTodosAsync, openTodo, selectTodo, saveTodo, addTodo, updateTodo } from './actions';
 import { TodoItem, TodoActionTypes } from './types';
+import { getTodo } from './selectors';
 
 function* preLoadSaga(){
     const todos: TodoItem[] = yield select((state: Types.RootState) => state.todos.data);
@@ -30,7 +27,8 @@ function* loadTodos(){
 }
 
 function* openTodoSaga(action: ReturnType<typeof openTodo>){
-    yield put(selectTodo(action.payload));
+    const todo: TodoItem = yield select((state: Types.RootState) => getTodo(state.todos, action.payload));
+    yield put(selectTodo(todo));
     yield put(toggleSimple(ToggleFieldType.TODO_MODAL));
 }
 

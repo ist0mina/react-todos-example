@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Types from 'MyReduxTypes';
-import { getTodoIds } from '../../features/todos/selector';
+import { getTodoIds } from '../../features/todos/selectors';
 import TodoList from './TodoList';
 import { TodoListStateProps } from './types';
 

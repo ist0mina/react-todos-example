@@ -4,7 +4,7 @@ import { requestEnhancerWithDefault, successEnhancerWithAnswer, failureEnhancer 
 
 import * as actions from './actions';
 import { TodoState, TodoActionTypes, TodoItem } from './types';
-import {getMaxTodoId} from './helpers';
+import { getMaxTodoId, emptyTodo } from './helpers';
 
 export type TodoAction = ActionType<typeof actions>;
 
@@ -12,7 +12,7 @@ type TodoStateKeys = keyof TodoState;
 
 export const initialState: TodoState = {
     data: [],
-    selected: -1,    
+    selected: emptyTodo,
 };
 
 export default (state = initialState, action: TodoAction) => {

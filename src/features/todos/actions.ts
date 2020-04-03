@@ -15,6 +15,6 @@ export const saveTodo = (todo: TodoItem) => action(TodoActionTypes.SAVE_TODO, to
 
 export const updateTodo = (todo: TodoItem) => action(TodoActionTypes.UPDATE_TODO, todo);
 
-export const selectTodo = (id: number) => action(TodoActionTypes.SELECT_TODO, id);
+export const selectTodo = (todo: TodoItem) => action(TodoActionTypes.SELECT_TODO, todo);
 
 export const deleteTodo = (id: number) => action(TodoActionTypes.DELETE_TODO, id);

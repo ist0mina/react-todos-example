@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import Types from 'MyReduxTypes';
-import { getTodo } from '../../features/todos/selector';
+import { getTodo } from '../../features/todos/selectors';
 import { TodoItem } from '../../features/todos/types';
 import { openTodo } from '../../features/todos/actions';
-import { isTodoOpen } from '../../features/toggle/selector';
+import { isTodoOpen } from '../../features/toggle/selectors';
 import { toggleTodo } from '../../features/toggle/actions';
 import TodoItemComponent from './TodoItem';
 import { TodoItemStateProps, TodoItemOwnProps } from './types';

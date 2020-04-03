@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import Types from 'MyReduxTypes';
 import { toggleAllTodos } from '../../features/toggle/actions';
-import { isAllOpen } from '../../features/toggle/selector';
+import { isAllOpen } from '../../features/toggle/selectors';
 import { loadTodosAsync, openTodo } from '../../features/todos/actions';
 import TodoToolbar from './TodoToolbar';
 import { TodoToolbarDispatchProps, TodoToolbarStateProps } from './types';

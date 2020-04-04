@@ -8,6 +8,7 @@ export interface TodoModalStateProps extends TodoItem {
 export interface TodoModalDispatchProps {
     toggle: (field: ToggleFieldType) => void;
     saveTodo: (todo: TodoItem) => void;
+    updateSelected: (todo: TodoItem) => void;
 };
 
 export type TodoModalProps = TodoModalStateProps & TodoModalDispatchProps;

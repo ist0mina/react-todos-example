@@ -9,20 +9,28 @@ import CustomSelect from '../../components/custom-select';
 import CustomDatetime from '../../components/custom-datetime';
 import { TodoModalProps } from './types';
 
-const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, text, id, status, dateCreated, dateLastChanged }: TodoModalProps) => {    
-    const [newText, setNewText] = useState('');
-    const [newStatus, setNewStatus] = useState(TodoStatusType.CREATED);
+const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, text, id, status, dateCreated, dateLastChanged, updateSelected }: TodoModalProps) => {        
     const [validated, setValidated] = useState(false);
 
     const isNew = id < 0;
     const title = isNew ? 'New todo' : 'Edit todo';
 
     const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => { 
-        setNewText(event.target.value); 
+        updateSelected({ 
+            id,
+            text: event.target.value,
+            status,
+            dateCreated,                        
+        }); 
     };
 
     const onChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setNewStatus(event.target.value as TodoStatusType);
+        updateSelected({
+            id,
+            text,
+            status: event.target.value as TodoStatusType,
+            dateCreated,
+        });
     };
     
     const onClose = () => {        
@@ -39,8 +47,8 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
         } else {
             saveTodo({ 
                 id, 
-                text: newText, 
-                status: newStatus,
+                text, 
+                status,
                 dateCreated,
                 dateLastChanged
             });  
@@ -49,10 +57,8 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
     };
     
     useEffect(() => {
-        if (show) {
-            setNewText(text);            
-            setValidated(false);
-            setNewStatus(status);
+        if (show) {            
+            setValidated(false);            
         }
     }, [id, show]);    
 
@@ -76,7 +82,7 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
                             required 
                             type="text" 
                             placeholder="Todo text..." 
-                            value={newText} 
+                            value={text} 
                             onChange={onChangeText}
                         />
                         <Form.Control.Feedback type="invalid">Need enter new todo</Form.Control.Feedback>
@@ -85,7 +91,7 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
                         controlId="status" 
                         title="Status todo" 
                         data={getTodoStatusList()} 
-                        selected={newStatus} 
+                        selected={status} 
                         disabled={isNew} 
                         onChange={onChangeStatus}
                     />
@@ -133,6 +139,6 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
             </Form>
       </Modal>
     );
-}
+};
 
 export default TodoModal;

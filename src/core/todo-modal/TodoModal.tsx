@@ -3,34 +3,45 @@ import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ToggleFieldType } from '../../features/toggle/types';
-import { TodoStatusType } from '../../features/todos/types';
+import { TodoStatusType, TodoItem } from '../../features/todos/types';
 import { getTodoStatusList } from '../../features/todos/helpers';
 import CustomSelect from '../../components/custom-select';
 import CustomDatetime from '../../components/custom-datetime';
 import { TodoModalProps } from './types';
 
-const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, text, id, status, dateCreated, dateLastChanged, updateSelected }: TodoModalProps) => {        
+const TodoModal: React.FC<TodoModalProps> = ({ 
+    show = false, 
+    toggle, 
+    saveTodo, 
+    text, 
+    id, 
+    status, 
+    dateCreated, 
+    dateLastChanged, 
+    updateSelected 
+}: TodoModalProps) => {        
     const [validated, setValidated] = useState(false);
 
     const isNew = id < 0;
     const title = isNew ? 'New todo' : 'Edit todo';
 
-    const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => { 
-        updateSelected({ 
-            id,
-            text: event.target.value,
-            status,
-            dateCreated,                        
-        }); 
-    };
-
-    const onChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    function updateSelectedKey<T>(key: keyof TodoItem, value: T){
         updateSelected({
             id,
             text,
-            status: event.target.value as TodoStatusType,
+            status,
             dateCreated,
-        });
+            dateLastChanged,
+            [key]: value,
+        })
+    }
+
+    const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => { 
+        updateSelectedKey<string>('text', event.target.value);        
+    };
+
+    const onChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        updateSelectedKey<TodoStatusType>('status', event.target.value as TodoStatusType);       
     };
     
     const onClose = () => {        
@@ -49,8 +60,8 @@ const TodoModal: React.FC<TodoModalProps> = ({ show = false, toggle, saveTodo, t
                 id, 
                 text, 
                 status,
-                dateCreated,
-                dateLastChanged
+                dateCreated,   
+                dateLastChanged: new Date(),             
             });  
             onClose();            
         }                

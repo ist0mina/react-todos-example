@@ -31,7 +31,15 @@ export default (state = initialState, action: TodoAction) => {
         case TodoActionTypes.UPDATE_TODO:
             return {
                 ...state,
-                data: state.data.map((todo: TodoItem) => todo.id === action.payload.id ? ({ ...todo, ...action.payload }) : todo)
+                data: state.data.map((todo: TodoItem) => (
+                    todo.id === action.payload.id ? 
+                        ({ 
+                            ...todo, 
+                            ...action.payload, 
+                            dateLastChanged: todo.status === action.payload.status ? todo.dateLastChanged : action.payload.dateLastChanged,
+                        }) : 
+                        todo
+                ))
             };
         case TodoActionTypes.SELECT_TODO:
             return {
